@@ -1,79 +1,57 @@
-name: CursedWords Management
+name: Monitor Repository
 
 on:
-  pull_request:
-    paths:
-      - 'CursedWords.txt'
   schedule:
     - cron: '0 */6 * * *'  # Runs every 6 hours
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
-  validate_and_update:
-    if: github.event_name == 'pull_request'
+  monitor:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests gitpython
-    - name: Validate new words with Multion API
-      env:
-        MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
-      run: python scripts/validate_submission.py
-    - name: Update formats if validation passes
-      if: success()
-      run: python scripts/update_files.py
-    - name: Commit changes
-      if: success()
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add CursedWords.md CursedWords.json index.html
-        git commit -m "Update CursedWords formats" || echo "No changes to commit"
-        git push
-    - name: Create appeal PR if validation fails
-      if: failure()
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: Appeal rejected words
-        title: 'Appeal: New words rejected by Multion agent'
-        body: |
-          The following words were rejected by the Multion agent:
-          
-          [List rejected words here]
-          
-          Please provide justification for including these words in the CursedWords list.
-        branch: appeal-rejected-words
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  monitor_and_maintain:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests
-    - name: Monitor repository with Multion API
-      env:
-        MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
-      run: python scripts/monitor_repository.py
-    - name: Create issue for detected problems
-      if: failure()
-      uses: peter-evans/create-issue-from-file@v4
-      with:
-        title: Repository Monitoring Alert
-        content-filepath: ./monitoring_report.md
-        labels: monitoring, alert
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: List contents of scripts directory
+        run: |
+          echo "Contents of scripts directory:"
+          ls -la scripts/
+
+      - name: Run monitoring script
+        run: |
+          if [ -f "scripts/monitor_repository.py" ]; then
+            python scripts/monitor_repository.py
+          else
+            echo "Error: scripts/monitor_repository.py not found"
+            echo "Files in scripts directory:"
+            ls -la scripts/
+            exit 1
+          fi
+        env:
+          MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
+
+      - name: Check for monitoring report
+        run: |
+          if [ -f "monitoring_report.md" ]; then
+            echo "Contents of monitoring_report.md:"
+            cat monitoring_report.md
+          else
+            echo "Error: monitoring_report.md not found"
+            exit 1
+          fi
+
+      - name: Create issue if problems detected
+        if: failure()
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: Repository monitoring detected issues
+          content-filepath: ./monitoring_report.md
+          token: ${{ secrets.GITHUB_TOKEN }}
