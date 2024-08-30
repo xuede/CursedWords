@@ -22,7 +22,7 @@ def get_new_words():
 
 def validate_word(word):
     payload = {
-        "cmd": f"Evaluate if the phrase '{word}' is overused in AI-generated content.",
+        "cmd": f"Evaluate if the phrase '{word}' is overused in AI-generated content. Or is otherwise inappropriate ex. poopyface",
         "url": "https://www.google.com",
         "local": False
     }
