@@ -1,4 +1,4 @@
-if [ -f name: Monitor Repository
+name: Monitor Repository
 
 on:
   schedule:
@@ -18,7 +18,9 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
 
       - name: List contents of scripts directory
         run: |
