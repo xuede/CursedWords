@@ -4,7 +4,7 @@ import json
 
 MULTION_API_KEY = os.environ.get('MULTION_API_KEY')
 MULTION_API_URL = 'https://api.multion.ai/v1/web/browse'
-REPO_URL = 'https://github.com/xuede/CursedWords'  # Updated with your username
+REPO_URL = 'https://github.com/xuede/CursedWords'
 
 def monitor_repository():
     payload = {

@@ -9,13 +9,13 @@ MULTION_API_URL = 'https://api.multion.ai/v1/web/browse'
 def get_new_words():
     repo = Repo('.')
     diff = repo.git.diff('origin/main', name_only=True)
-    if 'words-and-phrases.txt' not in diff:
+    if 'CursedWords.txt' not in diff:
         return []
     
-    with open('words-and-phrases.txt', 'r') as f:
+    with open('CursedWords.txt', 'r') as f:
         current_words = set(f.read().splitlines())
     
-    with open('words-and-phrases.txt', 'r') as f:
+    with open('CursedWords.txt', 'r') as f:
         new_words = set(f.read().splitlines()) - current_words
     
     return list(new_words)
@@ -35,7 +35,6 @@ def validate_word(word):
     
     if response.status_code == 200:
         result = response.json()
-        # Assuming the Multion API returns a clear indication of overuse
         return "overused" in result['message'].lower()
     else:
         print(f"Error validating word '{word}': {response.status_code}")

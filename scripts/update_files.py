@@ -1,18 +1,18 @@
 import json
 
 def read_words():
-    with open('words-and-phrases.txt', 'r') as f:
+    with open('CursedWords.txt', 'r') as f:
         return [line.strip() for line in f if line.strip()]
 
 def update_markdown(words):
-    with open('words-and-phrases.md', 'w') as f:
+    with open('CursedWords.md', 'w') as f:
         f.write("# Cursed Words and Phrases\n\n")
         for word in words:
             f.write(f"- {word}\n")
 
 def update_json(words):
     data = {"cursed_words": words}
-    with open('words-and-phrases.json', 'w') as f:
+    with open('CursedWords.json', 'w') as f:
         json.dump(data, f, indent=2)
 
 def update_html(words):
