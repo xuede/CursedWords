@@ -1,4 +1,4 @@
-name: Monitor Repository
+name: Monitor Repository and Update Files
 
 on:
   schedule:
@@ -26,7 +26,11 @@ jobs:
         run: python scripts/monitor_repository.py
         env:
           MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
-
+      
+      - name: Run monitoring script
+        run: python scripts/update_files.py
+        env:
+          MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
       - name: Display full monitoring report
         if: always()
         run: |
