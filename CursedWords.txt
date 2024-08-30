@@ -44,11 +44,19 @@ Cursed Words:
 - Indelible
 - Emerge
 - Meticulous
-- boogar poopface
+- Curate
+- Viral
+- Hack
+- Conversation
+- Streamline
+- Utilizing
+- Fostering
+- Elevate
+- Efficiency
 
 Cursed Phrases:
 - Dive into...
-- It’s important to note...
+- It's important to note...
 - Important to consider...
 - Based on the information provided...
 - Remember that...
@@ -101,7 +109,7 @@ Cursed Phrases:
 - It serves as a stepping stone towards the realization
 - Latest breakthrough signifies
 - Latest offering
-- Let’s delve into the exciting details
+- Let's delve into the exciting details
 - Main message to take away
 - Make informed decisions
 - Mark a significant step forward
@@ -149,7 +157,7 @@ Cursed Phrases:
 - Dive into a curated selection of
 - Embarking on
 - The world of
-- In today’s digital age
+- In today's digital age
 - Game changer
 - Designed to enhance
 - It is advisable
@@ -161,3 +169,7 @@ Cursed Phrases:
 - In the dynamic world of
 - A tapestry of
 - Embark on a journey
+- Welcome to
+- Digital world
+- In today's fast-paced world
+"""
