@@ -2,7 +2,7 @@ import json
 import os
 
 def read_words():
-    with open('words-and-phrases.txt', 'r') as f:
+    with open('CursedWords.txt', 'r') as f:
         return [line.strip() for line in f if line.strip()]
 
 def update_markdown(words):
