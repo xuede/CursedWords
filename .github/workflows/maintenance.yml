@@ -22,21 +22,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: List contents of scripts directory
+      - name: Check MULTION_API_KEY
         run: |
-          echo "Contents of scripts directory:"
-          ls -la scripts/
+          if [ -z "${{ secrets.MULTION_API_KEY }}" ]; then
+            echo "MULTION_API_KEY is not set in the repository secrets."
+            exit 1
+          else
+            echo "MULTION_API_KEY is set."
+          fi
 
       - name: Run monitoring script
-        run: |
-          if [ -f "scripts/monitor_repository.py" ]; then
-            python scripts/monitor_repository.py
-          else
-            echo "Error: scripts/monitor_repository.py not found"
-            echo "Files in scripts directory:"
-            ls -la scripts/
-            exit 1
-          fi
+        run: python scripts/monitor_repository.py
         env:
           MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
 
