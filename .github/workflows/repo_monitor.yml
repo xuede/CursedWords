@@ -22,29 +22,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Check MULTION_API_KEY
-        run: |
-          if [ -z "${{ secrets.MULTION_API_KEY }}" ]; then
-            echo "MULTION_API_KEY is not set in the repository secrets."
-            exit 1
-          else
-            echo "MULTION_API_KEY is set."
-          fi
-
       - name: Run monitoring script
-        run: |
-          python scripts/monitor_repository.py
+        run: python scripts/monitor_repository.py
         env:
           MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
-        continue-on-error: true
 
-      - name: Display script output
+      - name: Display full monitoring report
         if: always()
         run: |
-          echo "Script Output:"
-          cat monitoring_report.md || echo "monitoring_report.md not found"
-          echo "Error Output:"
-          cat error.log || echo "error.log not found"
+          echo "Full Monitoring Report:"
+          cat monitoring_report.md
 
       - name: Create issue if problems detected
         if: failure()
