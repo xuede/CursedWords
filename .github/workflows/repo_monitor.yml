@@ -1,10 +1,10 @@
-on: [push, workflow_dispatch]on: [push, workflow_dispatch]name: Monitor Repository
+name: Monitor Repository
 
 on:
   schedule:
     - cron: '0 */6 * * *'  # Runs every 6 hours
   workflow_dispatch:  # Allows manual triggering
-
+  push:
 jobs:
   monitor:
     runs-on: ubuntu-latest
