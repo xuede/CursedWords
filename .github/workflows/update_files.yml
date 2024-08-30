@@ -1,0 +1,41 @@
+name: Monitor Repository
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs every 6 hours
+  workflow_dispatch:  # Allows manual triggering
+  push:
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+          pip install multion
+      - name: Run monitoring script
+        run: python scripts/update_files.py
+        env:
+          MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
+
+      - name: Display full monitoring report
+        if: always()
+        run: |
+          echo "Full Monitoring Report:"
+          cat monitoring_report.md
+      - name: Create issue if problems detected
+        if: failure()
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: Repository monitoring detected issues
+          content-filepath: ./monitoring_report.md
+          token: ${{ secrets.GITHUB_TOKEN }}
