@@ -1,4 +1,4 @@
-name: Monitor Repository
+if [ -f name: Monitor Repository
 
 on:
   schedule:
