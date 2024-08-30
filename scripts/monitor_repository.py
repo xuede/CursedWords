@@ -5,13 +5,11 @@ import traceback
 
 MULTION_API_KEY = os.environ.get('MULTION_API_KEY')
 MULTION_API_URL = 'https://api.multion.ai/v1/web/browse'
-REPO_URL = 'https://github.com/xuede/CursedWords'  
+REPO_URL = 'https://github.com/xuede/CursedWords'
+
 def monitor_repository():
-    print(f"API Key present: {'Yes' if MULTION_API_KEY else 'No'}")
-    print(f"API Key length: {len(MULTION_API_KEY) if MULTION_API_KEY else 'N/A'}")
-    
     payload = {
-        "cmd": f"Check the repository at {REPO_URL} for any signs of defacement or inappropriate content. Review recent commits and pull requests.",
+        "cmd": f"Check the repository at {REPO_URL} for any signs of defacement or inappropriate content. Review recent commits and pull requests. Provide a detailed report of your findings.",
         "url": REPO_URL,
         "local": False
     }
@@ -20,15 +18,12 @@ def monitor_repository():
         "Content-Type": "application/json"
     }
 
-    print("Sending request to Multion API...")
     response = requests.post(MULTION_API_URL, json=payload, headers=headers)
-    print(f"Response status code: {response.status_code}")
     
     if response.status_code == 200:
         result = response.json()
         return result['message']
     else:
-        print(f"Error response body: {response.text}")
         raise Exception(f"Error monitoring repository: {response.status_code}")
 
 def main():
@@ -42,7 +37,9 @@ def main():
             f.write("# Repository Monitoring Report\n\n")
             f.write(report + "\n\n")
             if issues_detected:
-                f.write("⚠️ Potential issues detected. Please review the report and take necessary actions.\n")
+                f.write("⚠️ Potential issues detected. Please review the report above for details.\n")
+                f.write("Note: This flag was raised due to the presence of keywords like 'defacement' or 'inappropriate' in the report.\n")
+                f.write("It may not necessarily indicate a real issue, but warrants further investigation.\n")
             else:
                 f.write("✅ No issues detected.\n")
 
