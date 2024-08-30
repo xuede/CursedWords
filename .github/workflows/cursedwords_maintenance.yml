@@ -21,8 +21,7 @@ jobs:
       - name: Debug - List directory contents
         run: ls -R
       - name: Monitor repository
-        run: python monitor_repository.py
-        working-directory: ${{ github.workspace }}/scripts
+        run: python scripts/monitor_repository.py
         env:
           MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
       - name: Create issue if problems detected
