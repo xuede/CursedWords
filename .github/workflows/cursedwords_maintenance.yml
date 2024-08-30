@@ -23,7 +23,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests gitpython
         pip install requests
-        pip install multion-python
+        pip install multion
     - name: Validate new words with Multion API
       env:
         MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
