@@ -1,0 +1,162 @@
+cursed_words_and_phrases = """
+Cursed Words:
+- Delve
+- Tapestry
+- Vibrant
+- Landscape
+- Realm
+- Embark
+- Excels
+- Vital
+- Comprehensive
+- Intricate
+- Pivotal
+- Moreover
+- Arguably
+- Notably
+- Nuanced
+- Exquisite
+- Exemplary
+- Inspiring
+- Empowering
+- Authentic
+- Authenticity
+- Enthralling
+- Ingenious
+- Paradigm-shifting
+- Poignant
+- Visionary
+- Profound
+- Impactful
+- Introspective
+- Lucid
+- Empathetic
+- Thoughtful
+- Discerning
+- Inspirational
+- Engrossing
+- Robust
+- Supercharge
+- Reimagine
+- Beyond
+- Align
+- Diverse
+- Indelible
+- Emerge
+- Meticulous
+
+Cursed Phrases:
+- Dive into...
+- It’s important to note...
+- Important to consider...
+- Based on the information provided...
+- Remember that...
+- Navigating the [landscape]/[complexities of]
+- Delving into the intricacies of...
+- A testament to...
+- Revolutionize the Way
+- Transformative Power
+- Groundbreaking Advancement
+- In Conclusion
+- Rapid Pace of Development
+- Only Time Will Tell
+- Bringing Us One Step Closer
+- Push the Boundaries, Paving the Way
+- Advancement in the realm
+- Aims to bridge
+- Aims to democratize
+- Aims to foster innovation and collaboration
+- Becomes increasingly evident
+- Behind the Veil
+- Breaking barriers
+- Breakthrough has the potential to revolutionize the way
+- Bringing us
+- Bringing us closer to a future
+- By combining the capabilities
+- By harnessing the power
+- Capturing the attention
+- Continue to advance
+- Continue to make significant strides
+- Continue to push the boundaries
+- Crucial to be mindful
+- Exciting opportunities
+- Exciting possibilities
+- Exciting times lie ahead as we unlock the potential of
+- Expect to witness transformative breakthroughs
+- Expect to witness transformative breakthroughs in their capabilities
+- Explore the fascinating world
+- Exploring new frontiers
+- Exploring this avenue
+- Foster the development
+- Future might see us placing
+- Groundbreaking way
+- Have come a long way in recent years
+- Hold promise
+- Implications are profound
+- Improved efficiency in countless ways
+- In the fast-paced world
+- It discovered an intriguing approach
+- It remains to be seen
+- It serves as a stepping stone towards the realization
+- Latest breakthrough signifies
+- Latest offering
+- Let’s delve into the exciting details
+- Main message to take away
+- Make informed decisions
+- Mark a significant step forward
+- Mind-boggling figure
+- More robust evaluation
+- Navigate the landscape
+- One step closer
+- One thing is clear
+- Opens up exciting possibilities
+- Paving the way for enhanced performance
+- Possibilities are endless
+- Potentially revolutionizing the way
+- Raise fairness concerns
+- Raise intriguing questions
+- Remarkable abilities
+- Remarkable breakthrough
+- Remarkable proficiency
+- Remarkable success
+- Remarkable tool
+- Represent a major milestone
+- Represents a significant milestone in the field
+- Risks of drawing unsupported conclusions
+- Seeking trustworthiness
+- Significant step forward
+- Significant strides
+- The necessity of clear understanding
+- There is still room for improvement
+- Uncover hidden trends
+- Understanding of the capabilities
+- Unleashing the potential
+- Unlocking the power
+- We can improve understanding and decision-making
+- Welcome your thoughts
+- What sets this apart
+- With the introduction
+- For example
+- For instance
+- As such
+- In essence
+- Drawing from
+- In the realm of
+- Our times
+- Garden of
+- Navigate the nuances
+- Dive into a curated selection of
+- Embarking on
+- The world of
+- In today’s digital age
+- Game changer
+- Designed to enhance
+- It is advisable
+- So go ahead
+- Unveil the secrets
+- Master the art of
+- In summary
+- A testament to
+- In the dynamic world of
+- A tapestry of
+- Embark on a journey

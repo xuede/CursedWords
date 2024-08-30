@@ -1,0 +1,58 @@
+name: Validate and Update CursedWords
+
+on:
+  pull_request:
+    paths:
+      - 'words-and-phrases.txt'
+
+jobs:
+  validate_and_update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        pip install multion-python
+
+    - name: Validate new words with Multion API
+      env:
+        MULTION_API_KEY: ${{ secrets.MULTION_API_KEY }}
+      run: |
+        python scripts/validate_submission.py
+
+    - name: Update formats if validation passes
+      if: success()
+      run: |
+        python scripts/update_files.py
+
+    - name: Commit changes
+      if: success()
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add words-and-phrases.md words-and-phrases.json index.html
+        git commit -m "Update CursedWords formats" || echo "No changes to commit"
+        git push
+
+    - name: Create appeal PR if validation fails
+      if: failure()
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: Appeal rejected words
+        title: 'Appeal: New words rejected by Multion agent'
+        body: |
+          The following words were rejected by the Multion agent:
+          
+          [List rejected words here]
+          
+          Please provide justification for including these words in the CursedWords list.
+        branch: appeal-rejected-words
